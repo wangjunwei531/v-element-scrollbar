@@ -1,12 +1,12 @@
 
 .el-scrollbar {
+  height: 100%;
   overflow: hidden;
   position: relative; }
   .el-scrollbar:hover > .el-scrollbar__bar, .el-scrollbar:active > .el-scrollbar__bar, .el-scrollbar:focus > .el-scrollbar__bar {
     opacity: 1;
     transition: opacity 340ms ease-out; }
   .el-scrollbar__wrap {
-    overflow: scroll;
     height: 100%; }
     .el-scrollbar__wrap--hidden-default {
       scrollbar-width: none; }

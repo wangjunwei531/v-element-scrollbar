@@ -1,12 +1,12 @@
 {
   "name": "v-element-scrollbar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/vElementScrollbar.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "plugin": "webpack -p --config build/webpack.plugin.config.js",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
+    "test": "webpack-dev-server --inline --progress --mode production --config build/webpack.dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "vue.js",
     "v-element-scrollbar"
   ],
-  "author": "",
+  "author": "wjw1131982923",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wangjunwei531/packages-test/issues"
@@ -61,9 +61,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "dependencies": {
-    "resize-observer-polyfill": "^1.5.1",
-    "vue": "^2.6.12"
-  }
+  ]
 }

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App'
-import vElementScrollbar from './vElementScrollbar';
+import vElementScrollbar from '../dist/vElementScrollbar';
+// import vElementScrollbar from './plugin/index';
 Vue.config.productionTip = false
-console.log(vElementScrollbar)
 
 Vue.use(vElementScrollbar)
 new Vue({

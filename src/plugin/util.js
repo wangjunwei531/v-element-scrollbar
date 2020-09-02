@@ -32,6 +32,14 @@ export const BAR_MAP = {
   
     return style;
   };
+
+  function extend(to, _from) {
+    for (let key in _from) {
+      to[key] = _from[key];
+    }
+    return to;
+  };
+
   export function toObject(arr) {
     var res = {};
     for (let i = 0; i < arr.length; i++) {
@@ -41,4 +49,14 @@ export const BAR_MAP = {
     }
     return res;
   };
+
+  export function styleToObject(str){
+    const res = {}
+    const arr = str.split(';').filter(item=>item);
+    for(let i = 0; i < arr.length; i++) {
+      const itemArr = arr[i].split(':');
+      res[itemArr[0].trim()] = itemArr[1].trim();
+    }
+    return res;
+  }
   

@@ -88,5 +88,4 @@ const devWebpackConfig = {
       child_process: 'empty'
     }
   }
-  console.log(devWebpackConfig)
   module.exports = devWebpackConfig

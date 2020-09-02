@@ -2,8 +2,9 @@
 
 import { addResizeListener, removeResizeListener } from './resize-event';
 import scrollbarWidth from './scrollbar-width';
-import { toObject } from './util';
+import { toObject, styleToObject } from './util';
 import Bar from './bar';
+import bar from './bar';
 
 /* istanbul ignore next */
 export default {
@@ -18,6 +19,10 @@ export default {
     viewClass: {},
     viewStyle: {},
     noresize: Boolean, // 如果 container 尺寸不会发生变化，最好设置它可以优化性能
+    direction:{
+      type:String,
+      default: 'vertical'
+    },
     tag: {
       type: String,
       default: 'div'
@@ -45,36 +50,62 @@ export default {
 
     if (gutter) {
       const gutterWith = `-${gutter}px`;
-      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith};`;
+      const gutterStyle = this.getDirectionStyle(gutterWith);
 
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle);
-        style.marginRight = style.marginBottom = gutterWith;
+        gutterStyleObj = styleToObject(gutterStyle);
+        style = {...style, ...gutterStyleObj};
       } else if (typeof this.wrapStyle === 'string') {
         style += gutterStyle;
       } else {
         style = gutterStyle;
       }
     }
+    
     const view = h(this.tag, {
       class: ['el-scrollbar__view', this.viewClass],
       style: this.viewStyle,
       ref: 'resize'
     }, this.$slots.default);
-    const wrap = h(this.tag, {
-        class: [this.wrapClass, 'el-scrollbar__wrap', gutter ? '' : 'el-scrollbar__wrap--hidden-default'],
-        style: style,
-        on: {
-            scroll: this.handleScroll
-        },
-        ref:'wrap'
-    },[view])
+    const wrap = (
+      <div
+        ref="wrap"
+        style={ style }
+        onScroll={ this.handleScroll }
+        class={ [this.wrapClass, 'el-scrollbar__wrap', gutter ? '' : 'el-scrollbar__wrap--hidden-default'] }>
+        { [view] }
+      </div>
+    );
+
+    const verticalBar = (
+      <Bar
+        vertical
+        move={ this.moveY }
+        size={ this.sizeHeight }></Bar>
+    );
+    const horizontalBar = (
+      <Bar
+        move={ this.moveX }
+        size={ this.sizeWidth }></Bar>
+    )
+
+    const bars = this.getDirectionBars(verticalBar,horizontalBar)
 
     let nodes;
     if (!this.native) {
-        nodes = [wrap, h('Bar',{props: {move: this.moveX,size: this.sizeWidth}}),h('Bar',{props: {move: this.moveY,size: this.sizeHeight,vertical:true}})]
+      nodes = ([
+        wrap,
+        ...bars
+      ]);
     } else {
-        nodes = [h('div',{class: [this.wrapClass, 'el-scrollbar__wrap'],style: style,ref: 'wrap'},[view])]
+      nodes = ([
+        <div
+          ref="wrap"
+          class={ [this.wrapClass, 'el-scrollbar__wrap'] }>
+          { [view] }
+        </div>
+      ]);
     }
     return h('div', { class: 'el-scrollbar' }, nodes);
   },
@@ -97,6 +128,34 @@ export default {
 
       this.sizeHeight = (heightPercentage < 100) ? (heightPercentage + '%') : '';
       this.sizeWidth = (widthPercentage < 100) ? (widthPercentage + '%') : '';
+    },
+
+    getDirectionStyle(gutterWidth){
+      const marginStyle = (bottom,right) => `margin-bottom: ${bottom};margin-right: ${right};`;
+      const marginData = {
+        vertical: marginStyle(0,gutterWidth),
+        horizontal: marginStyle(gutterWidth,0),
+        both: marginStyle(gutterWidth,gutterWidth)
+      }
+
+      const overflowData = {
+        vertical: 'overflow-y: scroll',
+        horizontal: 'overflow-x: scroll',
+        both: 'overflow: scroll'
+      }
+      
+      return `${marginData[this.direction]}${overflowData[this.direction]}`;
+    },
+
+    getDirectionBars(verticalBar,horizontalBar){
+     
+      const barData = {
+        vertical: [verticalBar],
+        horizontal: [horizontalBar],
+        both: [verticalBar,horizontalBar]
+      }
+
+      return barData[this.direction]
     }
   },
 
