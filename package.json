@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangjunwei531/packages-test.git"
+    "url": "git+https://github.com/wangjunwei531/v-element-scrollbar.git"
   },
   "keywords": [
     "vue",
@@ -21,9 +21,9 @@
   "author": "wjw1131982923",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wangjunwei531/packages-test/issues"
+    "url": "https://github.com/wangjunwei531/v-element-scrollbar/issues"
   },
-  "homepage": "https://github.com/wangjunwei531/packages-test#readme",
+  "homepage": "https://github.com/wangjunwei531/v-element-scrollbar#readme",
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/plugin-transform-modules-umd": "^7.10.4",
