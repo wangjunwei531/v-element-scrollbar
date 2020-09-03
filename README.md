@@ -21,4 +21,16 @@ Vue use(vElementScrollbar)
 </template> 
 ```
 ## Props
+|  prop   | type | describe | default |
+|  ----  | ----  | ---- | ---- |
+| native  | boolean | 是否使用原生滚动 | false |
+| wrapStyle | object | el-scrollbar__wrap元素的行内样式 | {} |
+| wrapClass | object | el-scrollbar__wrap额外的className | {} |
+| viewStyle | object | el-scrollbar__view元素的行内样式 | {} |
+| viewClass | object | el-scrollbar__view额外的className | {} |
+| noresize | boolean | 不根据container的尺寸变化而变化 | false |
+| direction | string | `vertical | horizontal | both` 设置滚动方向 | vertical |
+| tag | string | 实现view元素的HTML标签 | div |
+
+
 

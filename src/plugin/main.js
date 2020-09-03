@@ -4,7 +4,6 @@ import { addResizeListener, removeResizeListener } from './resize-event';
 import scrollbarWidth from './scrollbar-width';
 import { toObject, styleToObject } from './util';
 import Bar from './bar';
-import bar from './bar';
 
 /* istanbul ignore next */
 export default {
