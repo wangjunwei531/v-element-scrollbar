@@ -1,6 +1,6 @@
 {
   "name": "v-element-scrollbar",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/vElementScrollbar.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "keywords": [
     "vue",
     "vue.js",
+    "element-ui",
     "v-element-scrollbar"
   ],
   "author": "wjw1131982923",

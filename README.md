@@ -1,3 +1,7 @@
+![npm version](https://img.shields.io/badge/npm-6.14.5-informational)
+![element-ui version](https://img.shields.io/badge/element--ui-2.13.2-ff69b4)
+![vue version](https://img.shields.io/badge/vue-2.6.12-blueviolet)
+
 # v-element-scrollbar
 从element-ui分离出来的scrollbar
 ## Install
