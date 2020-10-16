@@ -1,7 +1,7 @@
 {
   "name": "v-element-scrollbar",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.7",
+  "description": "基于vue和element-ui的scrollbar",
   "main": "dist/vElementScrollbar.js",
   "scripts": {
     "plugin": "webpack -p --config build/webpack.plugin.config.js",
